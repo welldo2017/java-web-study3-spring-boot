@@ -1,0 +1,32 @@
+
+
+#这种${APP_PORT:8080}意思是，首先从环境变量查找 APP_PORT，如果环境变量定义了，那么使用环境变量的值，否则，使用默认值 8080。
+server:
+  port: ${APP_PORT:8080}
+
+spring:
+  application:
+    name: ${APP_NAME:unnamed}
+  datasource:
+    url: jdbc:hsqldb:file:testdb
+    username: sa
+    password:
+    dirver-class-name: org.hsqldb.jdbc.JDBCDriver
+    # HikariCP配置:
+    hikari:
+      #因为auto-commit=false，所以UserService还需加@Transactional注解。否则SQL无法提交执行。
+      auto-commit: true
+      connection-timeout: 3000
+      validation-timeout: 3000
+      max-lifetime: 60000
+      maximum-pool-size: 20
+      minimum-idle: 1
+
+
+# pebble文档地址
+#https://pebbletemplates.io/wiki/guide/spring-boot-integration/
+pebble:
+  # 后缀，默认为".pebble"，改为"":
+  suffix:
+  # 开发阶段禁用模板缓存:
+  cache: false
