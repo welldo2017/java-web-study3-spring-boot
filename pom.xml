@@ -3,10 +3,101 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.welldo</groupId>
     <artifactId>java-web-study3</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <!--强烈推荐从spring-boot-starter-parent继承，因为这样就可以引入Spring Boot的预置配置。-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.0.RELEASE</version>
+    </parent>
+
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <java.version>11</java.version>
+
+        <pebble.version>3.1.2</pebble.version>
+    </properties>
+
+    <dependencies>
+        <!--mvc相关-->
+        <!--无需指定版本号，因为引入的<parent>内已经指定了-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- jdbc 相关-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!-- 集成Pebble View -->
+        <dependency>
+            <groupId>io.pebbletemplates</groupId>
+            <artifactId>pebble-spring-boot-starter</artifactId>
+            <version>${pebble.version}</version>
+        </dependency>
+
+        <!-- JDBC驱动 -->
+        <!--hsqldb已在spring-boot-starter-jdbc中预置了版本号2.5.0-->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+        </dependency>
+
+
+        <!--开发者工具，可以监控classpath路径上的文件。只要源码或配置文件发生修改，Spring Boot应用可以自动重启-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+    </dependencies>
+
+
+    <build>
+        <!--如果不喜欢默认的项目名+版本号作为文件名，可以加一个配置指定文件名：-->
+        <finalName>awesome-app</finalName>
+
+        <plugins>
+
+            <!--Spring Boot自带一个更简单的spring-boot-maven-plugin插件用来打包、
+            xxx-1.0-SNAPSHOT.jar.original是Maven标准打包插件打的jar包，它只包含我们自己的Class，不包含依赖，
+            xxx-jar-1.0-SNAPSHOT.jar是Spring Boot打包插件创建的包含依赖的jar，
+            可以直接运行：
+            java -jar springboot-exec-jar-1.0-SNAPSHOT.jar
+
+            这样，部署一个Spring Boot应用就非常简单，无需预装任何服务器，只需要上传jar包即可。
+            -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+
+            <!-- jar包瘦身插件
+            真正经常改动的代码其实是我们自己编写的代码。
+            问题来了：如何只打包我们自己编写的代码，同时又自动把依赖包下载到某处，并自动引入到classpath中
+             -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework.boot.experimental</groupId>
+                        <artifactId>spring-boot-thin-layout</artifactId>
+                        <version>1.0.27.RELEASE</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
