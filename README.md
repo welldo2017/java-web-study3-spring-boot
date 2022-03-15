@@ -1,28 +1,17 @@
-# Java-Web 开发
+# Java-Web 开发之3
 study廖雪峰老师的教程时，敲了一些代码，整理到这里，备忘。
 ## 1. web开发
 ### 地址
 >https://github.com/welldo2017/java-web-study
 
 ### 大纲
->1. web基础  
->1. servlet入门  
->1. servlet开发  
->1. servlet进阶  
->1. mvc开发
->1. mvc高级开发
->1. 使用filter
->1. 使用listener
+>略
 
 ## 2. spring 开发
 ### 地址
 >https://github.com/welldo2017/java-web-study2-spring
 ### 大纲
-* ioc容器
-* aop
-* 访问数据库
-* 开发web
-* 集成第三方组件
+>略
 
 
 ## 3. spring boot 开发(当前)
