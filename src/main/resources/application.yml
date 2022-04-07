@@ -15,7 +15,7 @@ spring:
     # HikariCP配置:
     hikari:
       #因为auto-commit=false，所以UserService还需加@Transactional注解。否则SQL无法提交执行。
-      auto-commit: true
+      auto-commit: false
       connection-timeout: 3000
       validation-timeout: 3000
       max-lifetime: 60000
@@ -30,3 +30,11 @@ pebble:
   suffix:
   # 开发阶段禁用模板缓存:
   cache: false
+
+
+# 监控器的配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, beans, env, metrics

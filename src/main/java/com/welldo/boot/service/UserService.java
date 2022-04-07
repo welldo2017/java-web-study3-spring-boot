@@ -17,7 +17,8 @@ import java.sql.Statement;
 
 
 //todo 这里应该加上
-// @Transactional
+//因为 spring.datasource.hikari.auto-commit=false，所以还需加@Transactional注解。否则SQL无法提交执行。
+@Transactional
 @Component
 public class UserService {
 
