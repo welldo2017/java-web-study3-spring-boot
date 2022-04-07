@@ -91,10 +91,32 @@
             </plugin>
 
 
+
+
+            <!-- 6.3 -->
             <!-- jar包瘦身插件
+            缺点：包太大了，动不动几十MB
+
+            项目中，我们引用到的Tomcat、Spring和其他第三方组件，基本不会变动，
             真正经常改动的代码其实是我们自己编写的代码。
+
             问题来了：如何只打包我们自己编写的代码，同时又自动把依赖包下载到某处，并自动引入到classpath中
+            解决方案就是使用spring-boot-thin-launcher。
+
+            原理：
+            它输出的jar包只包含我们自己代码编译后的class，一个很小的ThinJarWrapper，以及解析pom.xml后得到的所有依赖jar的列表。
+            它会先在 "指定目录" 搜索看看依赖的jar包是否都存在，
+            如果不存在，先从Maven中央仓库下载到本地，然后，再执行我们自己编写的main()入口方法
+
+            "指定目录":默认是用户主目录的.m2，我们也可以指定下载目录
+             这里指定当前目录，java -Dthin.root=. -jar awesome-app.jar
+
+             “预热”：
+             下载所有依赖项，但并不会运行我们编写的main()方法。此过程称之为“预热”（warm up）。
+             java -Dthin.dryrun=true -Dthin.root=. -jar awesome-app.jar
+
              -->
+ <!--
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -106,6 +128,8 @@
                     </dependency>
                 </dependencies>
             </plugin>
+-->
+
         </plugins>
     </build>
 
