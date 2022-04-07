@@ -52,7 +52,17 @@
         </dependency>
 
 
-        <!--开发者工具，可以监控classpath路径上的文件。只要源码或配置文件发生修改，Spring Boot应用可以自动重启-->
+        <!-- 6.1 -->
+        <!--开发者工具，可以监控classpath路径上的文件。只要源码或配置文件发生修改，Spring Boot应用可以自动重启。
+        1.个人感觉，并不需要。
+        2.并且，这个工具监控的是字节码的改动，所以，需要生效的话，有两种方式
+            2.1 更改代码后，手动点击 compile/build（build是编译整个工程，compile是编译指定的模块）
+            2.2 开启自动编译，但自动编译只在app未运行的状态下生效，所以还要
+            press ctrl+shift+a then type "registry" and click on it.
+            Then enable the option "compiler.automake.allow.when.app.running".
+            开启在“app运行时也生效”
+        -->
+<!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
