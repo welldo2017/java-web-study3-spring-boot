@@ -67,6 +67,29 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
+-->
+
+        <!-- 6.4 监控器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+
+        <!--6.5 open API-->
+        <!--
+        Open API是一个标准，它的主要作用是描述REST API，
+        既可以作为文档给开发者阅读，又可以让机器根据这个文档自动生成客户端代码等。
+        启动应用，打开浏览器输入 http://localhost:8080/swagger-ui.html：
+
+        用法，参考 ApiController
+        -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <!--自动引入Swagger UI用来创建API文档-->
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.4.0</version>
+        </dependency>
 
     </dependencies>
 
