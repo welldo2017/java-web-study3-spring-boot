@@ -77,6 +77,7 @@
 
         <plugins>
 
+            <!-- 6.2 -->
             <!--Spring Boot自带一个更简单的spring-boot-maven-plugin插件用来打包、
             xxx-1.0-SNAPSHOT.jar.original是Maven标准打包插件打的jar包，它只包含我们自己的Class，不包含依赖，
             xxx-jar-1.0-SNAPSHOT.jar是Spring Boot打包插件创建的包含依赖的jar，
@@ -85,6 +86,7 @@
 
             这样，部署一个Spring Boot应用就非常简单，无需预装任何服务器，只需要上传jar包即可。
             -->
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
